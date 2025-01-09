@@ -2,7 +2,7 @@ from neo4j import GraphDatabase
 import pandas as pd
 
 # Connect to Neo4j
-uri = "https://localhost:7687"  # URI to Docker container
+uri = "https://localhost:7474"  # URI to Docker container, local
 username = "neo4j"
 password = "airfacts-pw"
 
