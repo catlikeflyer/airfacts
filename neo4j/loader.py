@@ -2,7 +2,7 @@ from neo4j import GraphDatabase
 import pandas as pd
 
 # Connect to Neo4j
-uri = "https://localhost:7474"  # URI to Docker container, local
+uri = "bolt://localhost:7687"  # URI to Docker container, local
 username = "neo4j"
 password = "airfacts-pw"
 
@@ -18,6 +18,9 @@ def execute_query(csv_path, cypher_file):
     query = load_query_from_file(cypher_file)
     df = pd.read_csv(csv_path)
 
+    # Drop NaN values
+    df = df.dropna() 
+    
     with driver.session() as session:
         for _, row in df.iterrows():
             session.run(query, row.to_dict())
