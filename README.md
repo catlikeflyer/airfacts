@@ -4,14 +4,14 @@ This is a simple API that allows you to retrieve information about airports and 
 ## Database installation
 The project uses a Neo4j database. To run the database, you need to have Docker installed. To run the database, run the following command:
 
-#### Option 1. 
+### Option 1. 
 ```bash
 docker run --name neo4j -p 7474:7474 -p 7687:7687 -d -v $HOME/neo4j/data:/data -v $HOME/neo4j/logs:/logs -v $HOME/neo4j/import:/var/lib/neo4j/import -v $HOME/neo4j/plugins:/plugins --env NEO4J_AUTH=neo4j/airfacts neo4j:4.2
 ```
 
 This will create a new container with the name `neo4j`. The database will be available at `http://localhost:7474`. The default username and password are `neo4j` and `airfacts-pw`.
 
-#### Option 2.
+### Option 2.
 Alternatively, you can just create a local database within the Neo4j Desktop application. The database should be available at `http://localhost:7687`. Set the default username and password to `neo4j` and `airfacts-pw` as per the settings of this project.
 
 ## Database
