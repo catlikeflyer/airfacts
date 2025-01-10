@@ -9,21 +9,26 @@ password = "airfacts-pw"
 driver = GraphDatabase.driver(uri, auth=(username, password))
 
 # Function to read Cypher queries from file
+
+
 def load_query_from_file(filepath):
     with open(filepath, 'r') as file:
         return file.read()
 
 # Function to execute Cypher queries
+
+
 def execute_query(csv_path, cypher_file):
     query = load_query_from_file(cypher_file)
     df = pd.read_csv(csv_path)
 
-    # Drop NaN values
-    df = df.dropna() 
-    
+    # If Nan values are present, replace them with "N"
+    df.fillna("N", inplace=True)
+
     with driver.session() as session:
         for _, row in df.iterrows():
             session.run(query, row.to_dict())
+
 
 # Main Script
 if __name__ == "__main__":
