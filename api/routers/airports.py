@@ -18,6 +18,10 @@ def get_all_airports(limit: int = Query(default=50, ge=1)):
 # Return airport by IATA
 @router.get("/{iata}")
 def get_airport_by_iata(iata: str):
+    '''
+    Convert iata to uppercase
+    '''
+    iata = iata.upper()
     query = """
     MATCH (a:Airport {IATA: $iata})
     RETURN a.IATA AS IATA, a.Name AS Name, a.City AS City, a.Country AS Country

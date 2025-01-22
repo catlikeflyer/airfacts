@@ -17,6 +17,7 @@ def get_all_airlines():
 # Return airline by IATA
 @router.get("/{iata}")
 def get_airline_by_iata(iata: str):
+    iata = iata.upper()
     query = """
     MATCH (a:Airline {IATA: $iata})
     RETURN a.IATA AS IATA, a.Name AS Name, a.Country AS Country
@@ -30,6 +31,7 @@ def get_airline_by_iata(iata: str):
 # Return airline by country
 @router.get("/country/{country}")
 def get_airlines_by_country(country: str):
+    country = country.capitalize()
     query = """
     MATCH (a:Airline {Country: $country})
     RETURN a.IATA AS IATA, a.Name AS Name, a.Country AS Country
