@@ -3,7 +3,19 @@ from fastapi.middleware.cors import CORSMiddleware
 from routers import airports, airlines, routes
 from database import close_db
 
-app = FastAPI()
+app = FastAPI(
+    title="Airfacts API",
+    description="API for Airfacts, a Neo4j-based flight database",
+    version="1.0.0",
+    contact={
+        "name": "Do Hyun Nam",
+        "url": "https://dhnam.me",
+        "email": "dhnam@aol.com",
+    },
+    license_info={
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT",
+    },)
 
 # Configure CORS
 origins = [
@@ -24,9 +36,11 @@ app.include_router(airports.router, prefix="/api/airports", tags=["Airports"])
 app.include_router(airlines.router, prefix="/api/airlines", tags=["Airlines"])
 app.include_router(routes.router, prefix="/api/routes", tags=["Routes"])
 
+
 @app.get("/")
 async def root():
     return {"message": "Welcome to Airfacts!"}
+
 
 @app.on_event("shutdown")
 def shutdown():

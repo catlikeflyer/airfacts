@@ -5,7 +5,14 @@ router = APIRouter()
 
 # Return all airports (default limit 50)
 @router.get("/")
-def get_all_airports(limit: int = Query(default=50, ge=1)):
+def get_all_airports(limit: int = Query(default=50, ge=1), skip: int = Query(default=0, ge=0)):
+    """
+    Returns all airports in the database
+
+    Args:
+        limit (int): Maximum number of airports to return
+        skip (int): Number of airports to skip
+    """
     query = """
     MATCH (a:Airport)
     RETURN a.IATA AS IATA, a.Name AS Name, a.City AS City, a.Country AS Country
@@ -18,9 +25,12 @@ def get_all_airports(limit: int = Query(default=50, ge=1)):
 # Return airport by IATA
 @router.get("/{iata}")
 def get_airport_by_iata(iata: str):
-    '''
-    Convert iata to uppercase
-    '''
+    """
+    Returns an airport by IATA code. Converts IATA code to uppercase.
+
+    Args:
+        iata (str): IATA code of the airport
+    """
     iata = iata.upper()
     query = """
     MATCH (a:Airport {IATA: $iata})
@@ -35,6 +45,13 @@ def get_airport_by_iata(iata: str):
 # Return all airports in a country
 @router.get("/country/{country}", )
 def get_airports_by_country(country: str, limit: int = Query(default=50, ge=1)):
+    """
+    Returns all airports in a country. Capitalizes country name.
+
+    Args:
+        country (str): Country name
+        limit (int): Maximum number of airports to return
+    """
     query = """
     MATCH (a:Airport {Country: $country})
     RETURN a.IATA AS IATA, a.Name AS Name, a.City AS City, a.Country AS Country
