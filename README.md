@@ -1,6 +1,9 @@
 # Airfacts API
 This is a simple API that allows you to retrieve information about airports and airlines.
 
+# Background
+The project originates from my interest in aviation and to try and an attempt to have accesible data related to aviation facts. There are some robust APIs, although they are available not for free. By using FastAPI and a Neo4j database, this project serves as an open-source alternative to be able to retrieve information about airports and airlines and routes. 
+
 ## Database installation
 The project uses a Neo4j database. To run the database, you need to have Docker installed. To run the database, run the following command:
 
