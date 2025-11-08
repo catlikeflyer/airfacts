@@ -1,10 +1,10 @@
-# Airfacts API
+# Airfacts
 
-A simple, open-source API that provides information about airports, airlines, and flight routes worldwide.
+Neo4j database that provides information about airports, airlines, and flight routes worldwide.
 
 ## Background
 
-This project originates from my interest in aviation and an attempt to provide accessible data related to aviation facts. While robust APIs exist, they are often not available for free. By using FastAPI and a Neo4j database, this project serves as an open-source alternative to retrieve information about airports, airlines, and routes.
+As an aviation enthusiast, I wanted to create a project that provides easy access to aviation data. While there are existing APIs, many are paid services. This project uses FastAPI and Neo4j to offer a free alternative for retrieving information about airports, airlines, and routes.
 
 ## Features
 
