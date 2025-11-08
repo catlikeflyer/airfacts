@@ -93,4 +93,4 @@ st.sidebar.info(
     "Data includes airports, airlines, and routes worldwide."
 )
 st.sidebar.markdown("---")
-st.sidebar.markdown("Made with ❤️ using Streamlit & Neo4j")
+st.sidebar.markdown("Made with ❤️ using Streamlit & Neo4j by DHNAM")
