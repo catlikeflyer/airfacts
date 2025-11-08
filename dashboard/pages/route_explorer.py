@@ -63,7 +63,7 @@ def show_route_finder(db: Neo4jConnector):
                 st.error(f"Airport {dest_iata} not found")
 
     # Search button
-    if st.button("🔍 Find Routes", type="primary", use_container_width=True):
+    if st.button("🔍 Find Routes", type="primary", width="stretch"):
         if source_iata and dest_iata and len(source_iata) == 3 and len(dest_iata) == 3:
             find_and_display_routes(db, source_iata, dest_iata)
         else:
@@ -108,7 +108,7 @@ def find_and_display_routes(db: Neo4jConnector, source: str, destination: str):
 
         st.dataframe(
             df,
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
             column_config={
                 "source": "From",
@@ -192,7 +192,7 @@ def visualize_route(route_data):
         margin={"r": 0, "t": 0, "l": 0, "b": 0},
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     # Route statistics
     col1, col2, col3 = st.columns(3)
@@ -268,13 +268,13 @@ def show_airport_map(db: Neo4jConnector):
             mapbox_style="open-street-map", margin={"r": 0, "t": 0, "l": 0, "b": 0}
         )
 
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
         # Show data table
         with st.expander("📋 View Airport Data"):
             st.dataframe(
                 df[["IATA", "Name", "City", "Country"]],
-                use_container_width=True,
+                width="stretch",
                 hide_index=True,
             )
     else:

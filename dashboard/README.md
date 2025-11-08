@@ -4,33 +4,51 @@ Interactive Streamlit dashboard to explore global aviation data from the Airfact
 
 ## Features
 
-### 🏠 Home
+### Phase 1 (MVP) ✅ Complete
+
+#### 🏠 Home
 
 - Database statistics overview
 - Top airports and countries visualizations
 - Quick start guide
 
-### 🔍 Airport Search
+#### 🔍 Airport Search
 
 - Search airports by name, city, country, or IATA code
 - View detailed airport information
 - See routes from each airport
 - Interactive airport location maps
 
-### 🗺️ Route Explorer
+#### 🗺️ Route Explorer
 
 - Find routes between any two airports
 - Visualize routes on interactive maps
 - View all airports on a global map
 - Filter by country
 
-### 📊 Analytics
+#### 📊 Analytics
 
 - Top airports by connectivity
 - Top airlines by route count
 - Country-level airport distribution
 - Route distance analytics
 - Interactive charts and visualizations
+
+### Phase 2 🚧 Work in Progress
+
+- ✅ Airline route networks on map
+- ✅ Top N airports/airlines charts
+- 🚧 Distance-based filtering
+- 🚧 Graph visualization
+
+### Phase 3 📋 Planned
+
+- 📋 Shortest path algorithm visualization
+- 📋 Network graph of airport connections
+- 📋 Airline route network comparison
+- 📋 Export data to CSV
+- 📋 Advanced filtering options
+- 📋 Real-time search suggestions
 
 ## Installation
 
@@ -164,15 +182,6 @@ dashboard/
 
 - Check Neo4j credentials match environment variables
 - Verify Neo4j is accessible at bolt://localhost:7687
-
-## Future Enhancements (Phase 2)
-
-- Shortest path algorithm visualization
-- Network graph of airport connections
-- Airline route network comparison
-- Export data to CSV
-- Advanced filtering options
-- Real-time search suggestions
 
 ---
 

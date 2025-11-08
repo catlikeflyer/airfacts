@@ -55,13 +55,13 @@ def show_airport_analytics(db: Neo4jConnector):
         fig.update_layout(
             showlegend=False, height=400, yaxis={"categoryorder": "total ascending"}
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
         # Data table
         with st.expander("📋 View Data"):
             st.dataframe(
                 df,
-                use_container_width=True,
+                width="stretch",
                 hide_index=True,
                 column_config={
                     "IATA": "Code",
@@ -101,7 +101,7 @@ def show_airport_analytics(db: Neo4jConnector):
             fig_bar.update_layout(
                 showlegend=False, height=500, yaxis={"categoryorder": "total ascending"}
             )
-            st.plotly_chart(fig_bar, use_container_width=True)
+            st.plotly_chart(fig_bar, width="stretch")
 
         with col2:
             # Pie chart
@@ -113,7 +113,7 @@ def show_airport_analytics(db: Neo4jConnector):
             )
             fig_pie.update_traces(textposition="inside", textinfo="percent+label")
             fig_pie.update_layout(height=500)
-            st.plotly_chart(fig_pie, use_container_width=True)
+            st.plotly_chart(fig_pie, width="stretch")
 
 
 def show_airline_analytics(db: Neo4jConnector):
@@ -143,13 +143,13 @@ def show_airline_analytics(db: Neo4jConnector):
         fig.update_layout(
             showlegend=False, height=400, yaxis={"categoryorder": "total ascending"}
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
         # Data table
         with st.expander("📋 View Data"):
             st.dataframe(
                 df,
-                use_container_width=True,
+                width="stretch",
                 hide_index=True,
                 column_config={
                     "IATA": "Code",
@@ -171,7 +171,7 @@ def show_airline_analytics(db: Neo4jConnector):
             hover_data=["IATA"],
         )
         fig_tree.update_layout(height=500)
-        st.plotly_chart(fig_tree, use_container_width=True)
+        st.plotly_chart(fig_tree, width="stretch")
 
     else:
         st.info("No data available")
@@ -248,7 +248,7 @@ def show_route_analytics(db: Neo4jConnector):
                         title=f"Route Distance Distribution from {airport_iata}",
                     )
                     fig_hist.update_layout(height=300)
-                    st.plotly_chart(fig_hist, use_container_width=True)
+                    st.plotly_chart(fig_hist, width="stretch")
 
                 # Show top destinations
                 st.markdown("##### 🎯 Top Destinations by Distance")
@@ -266,7 +266,7 @@ def show_route_analytics(db: Neo4jConnector):
                         nearest[
                             ["destination", "dest_city", "dest_country", "distance"]
                         ],
-                        use_container_width=True,
+                        width="stretch",
                         hide_index=True,
                         column_config={
                             "destination": "IATA",
@@ -289,7 +289,7 @@ def show_route_analytics(db: Neo4jConnector):
                         farthest[
                             ["destination", "dest_city", "dest_country", "distance"]
                         ],
-                        use_container_width=True,
+                        width="stretch",
                         hide_index=True,
                         column_config={
                             "destination": "IATA",

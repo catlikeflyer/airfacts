@@ -58,7 +58,9 @@ st.markdown(
 # Sidebar navigation
 st.sidebar.title("🛫 Navigation")
 page = st.sidebar.radio(
-    "Go to", ["🏠 Home", "🔍 Airport Search", "🗺️ Route Explorer", "📊 Analytics"]
+    "Go to",
+    ["🏠 Home", "🔍 Airport Search", "🗺️ Route Explorer", "📊 Analytics"],
+    index=0,  # Default to Home page
 )
 
 # Initialize connector

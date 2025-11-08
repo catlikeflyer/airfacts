@@ -85,7 +85,7 @@ def show(db: Neo4jConnector):
             fig.update_layout(
                 showlegend=False, height=400, yaxis={"categoryorder": "total ascending"}
             )
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
         else:
             st.info("No data available")
 
@@ -107,7 +107,7 @@ def show(db: Neo4jConnector):
             fig.update_layout(
                 showlegend=False, height=400, yaxis={"categoryorder": "total ascending"}
             )
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
         else:
             st.info("No data available")
 
@@ -146,17 +146,35 @@ def show(db: Neo4jConnector):
         
         **Data Source:** [OpenFlights](https://openflights.org/data.html)
         
-        **Features:**
-        - 🔍 Search and explore airports worldwide
-        - 🗺️ Visualize flight routes on interactive maps
-        - 📊 Analyze aviation data with charts and statistics
-        - 🌍 Filter by country, airline, and more
-        
         **Technology Stack:**
         - Frontend: Streamlit
         - Database: Neo4j (Graph Database)
         - Visualization: Plotly
         
         Navigate using the sidebar to explore different features!
+        """
+        )
+
+    # Development Roadmap
+    with st.expander("🗺️ Development Roadmap"):
+        st.markdown(
+            """
+        ### Phase 1 (MVP) ✅ Complete
+        - ✅ Airport search and details
+        - ✅ Simple route finder between two airports
+        - ✅ Basic statistics (total airports, airlines, routes)
+        - ✅ Map with all airports plotted
+        
+        ### Phase 2 🚧 Work in Progress
+        - ✅ Airline route networks on map
+        - ✅ Top N airports/airlines charts
+        - 🚧 Distance-based filtering
+        - 🚧 Graph visualization
+        
+        ### Phase 3 📋 Planned
+        - 📋 Shortest path algorithm visualization
+        - 📋 Advanced analytics
+        - 📋 Export functionality
+        - 📋 Real-time filtering
         """
         )

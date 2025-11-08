@@ -127,6 +127,29 @@ These automated tools will:
    ```
    - Dashboard: http://localhost:8501
 
+## Dashboard Features
+
+### Phase 1 (MVP) ✅ Complete
+
+- ✅ Airport search and details
+- ✅ Simple route finder between two airports
+- ✅ Basic statistics (total airports, airlines, routes)
+- ✅ Map with all airports plotted
+
+### Phase 2 🚧 Work in Progress
+
+- ✅ Airline route networks on map
+- ✅ Top N airports/airlines charts
+- 🚧 Distance-based filtering
+- 🚧 Graph visualization
+
+### Phase 3 📋 Planned
+
+- 📋 Shortest path algorithm
+- 📋 Advanced analytics
+- 📋 Export functionality
+- 📋 Real-time filtering
+
 ## Usage Examples
 
 ### Get all airports (with pagination)

@@ -36,7 +36,7 @@ def show(db: Neo4jConnector):
             # Display results in an interactive table
             st.dataframe(
                 df,
-                use_container_width=True,
+                width="stretch",
                 hide_index=True,
                 column_config={
                     "IATA": st.column_config.TextColumn("IATA", width="small"),
@@ -120,7 +120,7 @@ def show(db: Neo4jConnector):
             df_popular = pd.DataFrame(popular_data)
             st.dataframe(
                 df_popular[["IATA", "Name", "City", "Country"]],
-                use_container_width=True,
+                width="stretch",
                 hide_index=True,
             )
 
@@ -190,7 +190,7 @@ def show_airport_details(db: Neo4jConnector, iata: str):
             mapbox_style="open-street-map", margin={"r": 0, "t": 0, "l": 0, "b": 0}
         )
 
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
     # Routes from this airport
     st.markdown("#### ✈️ Routes")
@@ -204,7 +204,7 @@ def show_airport_details(db: Neo4jConnector, iata: str):
             df_routes[
                 ["destination", "dest_city", "dest_country", "airline", "distance"]
             ],
-            use_container_width=True,
+            width="stretch",
             hide_index=True,
             column_config={
                 "destination": "Destination",
