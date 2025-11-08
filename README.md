@@ -271,13 +271,31 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
 ### Environment Variables
 
-You can customize the Neo4j connection by setting these environment variables:
+The application uses environment variables for configuration. You can set them using a `.env` file in the project root.
+
+**Create a `.env` file:**
+
+```bash
+cp .env.example .env
+```
+
+**Edit `.env` with your configuration:**
+
+```bash
+NEO4J_URI=bolt://localhost:7687
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=airfacts-pw
+```
+
+Alternatively, you can export environment variables in your shell:
 
 ```bash
 export NEO4J_URI="bolt://localhost:7687"
-export NEO4J_USER="neo4j"
+export NEO4J_USERNAME="neo4j"
 export NEO4J_PASSWORD="airfacts-pw"
 ```
+
+The application automatically loads variables from `.env` using python-dotenv.
 
 ## Contributing
 

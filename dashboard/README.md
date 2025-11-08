@@ -71,10 +71,27 @@ The dashboard will open in your browser at http://localhost:8501
 
 ## Configuration
 
-The dashboard connects to Neo4j using these environment variables (with defaults):
+The dashboard connects to Neo4j using environment variables. You can set them using a `.env` file in the project root.
+
+**Create a `.env` file:**
+
+```bash
+cd ..  # Go to project root
+cp .env.example .env
+```
+
+**Edit `.env` with your configuration:**
+
+```bash
+NEO4J_URI=bolt://localhost:7687
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=airfacts-pw
+```
+
+Alternatively, you can export environment variables in your shell (they will use these defaults if not set):
 
 - `NEO4J_URI` - Default: `bolt://localhost:7687`
-- `NEO4J_USER` - Default: `neo4j`
+- `NEO4J_USERNAME` - Default: `neo4j`
 - `NEO4J_PASSWORD` - Default: `airfacts-pw`
 
 ## Usage Examples

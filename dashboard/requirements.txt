@@ -6,3 +6,6 @@ numpy>=1.23.0,<2.0.0
 
 # Database connection (shared with API)
 neo4j>=5.27.0
+
+# Environment variables
+python-dotenv>=1.0.0

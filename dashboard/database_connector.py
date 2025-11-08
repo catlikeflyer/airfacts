@@ -1,6 +1,10 @@
 from neo4j import GraphDatabase
 import os
 from typing import List, Dict, Any, Optional
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 class Neo4jConnector:
@@ -8,7 +12,7 @@ class Neo4jConnector:
 
     def __init__(self):
         self.uri = os.getenv("NEO4J_URI", "bolt://localhost:7687")
-        self.user = os.getenv("NEO4J_USER", "neo4j")
+        self.user = os.getenv("NEO4J_USERNAME", "neo4j")
         self.password = os.getenv("NEO4J_PASSWORD", "airfacts-pw")
         self.driver = GraphDatabase.driver(self.uri, auth=(self.user, self.password))
 
