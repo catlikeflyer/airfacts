@@ -1,8 +1,8 @@
 # Dashboard-specific requirements
 streamlit>=1.28.0
 plotly>=5.17.0
-pandas>=1.5.2,<2.0.0
-numpy>=1.23.0,<2.0.0
+pandas>=2.0.0
+numpy>=1.24.0
 
 # Database connection (shared with API)
 neo4j>=5.27.0
