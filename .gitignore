@@ -3,5 +3,4 @@
 .env.local
 .node_modules/
 .DS_Store
-.streamlit/
 __pycache__/

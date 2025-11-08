@@ -45,12 +45,15 @@ git push origin main
 2. Fill in the deployment form:
 
    **Repository:**
+
    - Select: `catlikeflyer/airfacts`
 
    **Branch:**
+
    - Select: `main`
 
    **Main file path:**
+
    - Enter: `dashboard/app.py`
 
 3. Click **"Advanced settings"** (before deploying)
@@ -66,6 +69,7 @@ NEO4J_PASSWORD = "aW3Kaz_40eY1poKjblu4ecVawDQ3zc4ccQNjxa_SOGs"
 ```
 
 **Important Notes:**
+
 - ✅ Use the exact format above (TOML format)
 - ✅ No quotes around the keys (left side)
 - ✅ Use quotes around the values (right side)
@@ -76,6 +80,7 @@ NEO4J_PASSWORD = "aW3Kaz_40eY1poKjblu4ecVawDQ3zc4ccQNjxa_SOGs"
 1. Click **"Deploy!"** button
 
 2. Wait for deployment (usually 2-3 minutes)
+
    - You'll see the build logs
    - Dependencies will be installed
    - App will start automatically
@@ -90,6 +95,7 @@ NEO4J_PASSWORD = "aW3Kaz_40eY1poKjblu4ecVawDQ3zc4ccQNjxa_SOGs"
 ### Change App Name
 
 After deployment, you can customize:
+
 1. Go to your app settings (⚙️ icon)
 2. Click "Settings"
 3. Change the app name/URL
@@ -98,6 +104,7 @@ After deployment, you can customize:
 ### Update App
 
 Whenever you push changes to GitHub:
+
 1. Streamlit will automatically redeploy
 2. Or click "Reboot" in the app menu
 
@@ -115,10 +122,12 @@ After deployment, test your dashboard:
 ### App Won't Start
 
 **Check build logs:**
+
 - Click on "Manage app" → "Logs"
 - Look for import errors or missing dependencies
 
 **Common fixes:**
+
 - Verify `dashboard/requirements.txt` includes all dependencies
 - Make sure secrets are in correct TOML format
 - Check file path is exactly `dashboard/app.py`
@@ -127,22 +136,26 @@ After deployment, test your dashboard:
 ### Can't Connect to Database
 
 **Verify secrets:**
+
 - Go to app settings → Secrets
 - Make sure NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD are set
 - Check for typos in the values
 
 **Test connection:**
+
 - Check if your AuraDB instance is running at: https://console.neo4j.io
 - Verify the URI matches your AuraDB instance
 
 ### App is Slow
 
 **Normal behavior:**
+
 - First load may take 10-30 seconds (cold start)
 - Subsequent loads are faster
 - Free tier has resource limits
 
 **If too slow:**
+
 - Check Neo4j query performance
 - Consider upgrading Streamlit plan for better resources
 
@@ -158,11 +171,13 @@ After deployment, test your dashboard:
 ## 🔐 Security Notes
 
 **Secrets are safe:**
+
 - Environment variables are encrypted
 - Never logged or exposed in UI
 - Only accessible to your app runtime
 
 **Making app private:**
+
 - Free tier is public only
 - For private apps, upgrade to Teams plan ($20/month)
 
