@@ -2,11 +2,30 @@
 
 ## Common Issues and Solutions
 
-### 1. Neo4j Connection Failed
+### 1. NumPy Binary Incompatibility Error
+
+**Error:** `ValueError: numpy.dtype size changed, may indicate binary incompatibility. Expected 96 from C header, got 88 from PyObject`
+
+**Solution:**
+This occurs when packages were compiled against different numpy versions. Fix by reinstalling with compatible versions:
+
+```bash
+pip uninstall -y numpy pandas
+pip install 'numpy>=1.23.0,<2.0.0' 'pandas>=1.5.2,<2.0.0'
+```
+
+Or reinstall all dependencies:
+
+```bash
+pip install -r requirements-minimal.txt --force-reinstall
+```
+
+### 2. Neo4j Connection Failed
 
 **Error:** `ServiceUnavailable: Failed to establish connection`
 
 **Solutions:**
+
 - Ensure Neo4j is running: `docker ps | grep neo4j`
 - Check if port 7687 is available: `lsof -i :7687`
 - Verify credentials in your environment or code (username: `neo4j`, password: `airfacts-pw`)
@@ -17,11 +36,15 @@
 **Error:** `Address already in use` (port 8000 or 7687)
 
 **Solutions:**
+
 - For API (port 8000):
+
   ```bash
   lsof -ti:8000 | xargs kill -9
   ```
+
   Or run on a different port:
+
   ```bash
   uvicorn main:app --port 8001
   ```
@@ -38,6 +61,7 @@
 **Error:** `ModuleNotFoundError: No module named 'fastapi'`
 
 **Solutions:**
+
 - Ensure virtual environment is activated:
   ```bash
   source .venv/bin/activate
@@ -52,6 +76,7 @@
 **Error:** API returns empty arrays `[]`
 
 **Solutions:**
+
 - Load data into Neo4j:
   ```bash
   cd neo4j
@@ -67,6 +92,7 @@
 **Error:** `ImportError: cannot import name 'schemas'`
 
 **Solutions:**
+
 - Ensure you're running from the correct directory:
   ```bash
   cd api
@@ -79,6 +105,7 @@
 **Error:** `permission denied while trying to connect to the Docker daemon`
 
 **Solutions:**
+
 - Add your user to the docker group:
   ```bash
   sudo usermod -aG docker $USER
@@ -91,6 +118,7 @@
 **Issue:** `loader.py` is running for a very long time
 
 **Solutions:**
+
 - This is normal! Loading all airports, airlines, and routes can take 5-10 minutes
 - Check progress by looking at printed messages
 - Verify internet connection (data is fetched from OpenFlights)
@@ -101,6 +129,7 @@
 **Error:** `Access to fetch at 'http://localhost:8000' from origin 'http://localhost:3000' has been blocked by CORS`
 
 **Solutions:**
+
 - Update CORS origins in `api/main.py`:
   ```python
   origins = [
@@ -113,28 +142,33 @@
 ## Checking System Status
 
 ### Verify Python Installation
+
 ```bash
 python3 --version  # Should be 3.8 or higher
 ```
 
 ### Verify Docker Installation
+
 ```bash
 docker --version
 docker ps  # Should show neo4j container if running
 ```
 
 ### Check Neo4j Status
+
 ```bash
 docker logs neo4j  # View Neo4j logs
 ```
 
 ### Test API Endpoints
+
 ```bash
 curl http://localhost:8000/
 curl http://localhost:8000/api/airports/JFK
 ```
 
 ### Check Neo4j Database
+
 1. Open http://localhost:7474 in your browser
 2. Login with username: `neo4j`, password: `airfacts-pw`
 3. Run query:
@@ -147,10 +181,12 @@ curl http://localhost:8000/api/airports/JFK
 If you're still experiencing issues:
 
 1. Check the logs:
+
    - API logs in terminal where you ran `uvicorn`
    - Neo4j logs: `docker logs neo4j`
 
 2. Verify all dependencies are installed:
+
    ```bash
    pip list
    ```

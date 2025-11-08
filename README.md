@@ -14,6 +14,7 @@ This project originates from my interest in aviation and an attempt to provide a
 - 📊 **Real-time Data**: Data fetched from OpenFlights
 - 🚀 **Fast API**: Built with FastAPI for high performance
 - 📝 **Auto Documentation**: Interactive API docs at `/docs`
+- 🎨 **Dashboard**: Interactive Streamlit dashboard for data visualization
 
 ## Quick Start
 
@@ -113,9 +114,18 @@ These automated tools will:
    ```
 
 7. **Access the API**
+
    - API: http://localhost:8000
    - Interactive Docs: http://localhost:8000/docs
    - Neo4j Browser: http://localhost:7474
+
+8. **(Optional) Run the Dashboard**
+   ```bash
+   cd ../dashboard
+   pip install -r requirements.txt
+   streamlit run app.py
+   ```
+   - Dashboard: http://localhost:8501
 
 ## Usage Examples
 

@@ -1,4 +1,4 @@
-.PHONY: help install setup start start-neo4j stop-neo4j load-data clean test
+.PHONY: help install setup start start-neo4j stop-neo4j load-data clean test dashboard install-dashboard
 
 help: ## Show this help message
 	@echo 'Usage: make [target]'
@@ -35,11 +35,18 @@ stop-neo4j: ## Stop and remove Neo4j container
 	@echo "✅ Neo4j stopped and removed"
 
 load-data: ## Load data from OpenFlights into Neo4j
-	cd neo4j && python3 loader.py
+	cd database && python3 loader.py
 	@echo "✅ Data loaded successfully"
 
 start: ## Start the API server
 	cd api && uvicorn main:app --reload --host 0.0.0.0 --port 8000
+
+dashboard: ## Start the Streamlit dashboard
+	cd dashboard && streamlit run app.py
+
+install-dashboard: ## Install dashboard dependencies
+	cd dashboard && pip install -r requirements.txt
+	@echo "✅ Dashboard dependencies installed"
 
 clean: ## Clean up Python cache files
 	find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true

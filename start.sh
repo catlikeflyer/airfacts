@@ -77,7 +77,7 @@ read -p "📊 Do you want to load data from OpenFlights? (This may take a few mi
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "📥 Loading data from OpenFlights..."
-    cd neo4j
+    cd database
     python3 loader.py
     cd ..
     echo "✓ Data loaded successfully"
