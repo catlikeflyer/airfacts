@@ -122,6 +122,7 @@ After deployment, test your dashboard:
 - Verify `dashboard/requirements.txt` includes all dependencies
 - Make sure secrets are in correct TOML format
 - Check file path is exactly `dashboard/app.py`
+- **Python version errors:** The `.python-version` file pins to Python 3.11 (fixes pandas/numpy build issues)
 
 ### Can't Connect to Database
 
