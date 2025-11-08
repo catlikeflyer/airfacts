@@ -15,12 +15,18 @@ app = FastAPI(
     license_info={
         "name": "MIT",
         "url": "https://opensource.org/licenses/MIT",
-    },)
+    },
+)
 
 # Configure CORS
 origins = [
-    "http://localhost:3000",  # Frontend or other allowed origins
+    "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "http://localhost:8501",  # Local Streamlit
+    "http://127.0.0.1:8501",  # Local Streamlit
+    # Add your production URLs here after deployment:
+    # "https://airfacts.streamlit.app",
+    # "https://airfacts-api.onrender.com",
 ]
 
 app.add_middleware(
