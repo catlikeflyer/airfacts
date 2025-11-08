@@ -6,7 +6,7 @@ from database import close_db
 app = FastAPI(
     title="Airfacts API",
     description="API for Airfacts, a Neo4j-based flight database",
-    version="1.0.0",
+    version="2.0.0",
     contact={
         "name": "Do Hyun Nam",
         "url": "https://dhnam.me",

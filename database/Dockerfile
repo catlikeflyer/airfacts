@@ -12,9 +12,6 @@ ENV NEO4J_AUTH=neo4j/airfacts-pw \
 # Create the import directory (if it doesn't already exist)
 RUN mkdir -p /var/lib/neo4j/import
 
-# Copy the CSV files into the container's import directory
-COPY ../datasets/*.csv /var/lib/neo4j/import/
-
 # Expose ports for Bolt and HTTP protocols
 EXPOSE 7687 7474
 
