@@ -211,3 +211,114 @@ class Neo4jConnector:
         """
         result = self.execute_query(query)
         return [r["country"] for r in result]
+
+    # ===== Airline Queries =====
+
+    def get_airline_by_iata(self, iata: str) -> Optional[Dict[str, Any]]:
+        """Get detailed airline information by IATA code"""
+        query = """
+        MATCH (a:Airline {IATA: $iata})
+        RETURN a.IATA as IATA, a.Name as Name, a.Country as Country,
+               a.Callsign as Callsign, a.ICAO as ICAO, a.Alias as Alias,
+               a.Active as Active
+        """
+        result = self.execute_query(query, {"iata": iata.upper()})
+        return result[0] if result else None
+
+    def search_airlines(
+        self, search_term: str, limit: int = 50
+    ) -> List[Dict[str, Any]]:
+        """Search airlines by name, country, or IATA code"""
+        query = """
+        MATCH (a:Airline)
+        WHERE toLower(a.Name) CONTAINS toLower($search)
+           OR toLower(a.Country) CONTAINS toLower($search)
+           OR toLower(a.IATA) = toLower($search)
+        RETURN a.IATA as IATA, a.Name as Name, a.Country as Country,
+               a.Callsign as Callsign, a.Active as Active
+        LIMIT $limit
+        """
+        return self.execute_query(query, {"search": search_term, "limit": limit})
+
+    def get_airlines_by_country(
+        self, country: str, limit: int = 100
+    ) -> List[Dict[str, Any]]:
+        """Get all airlines in a specific country"""
+        query = """
+        MATCH (a:Airline {Country: $country})
+        RETURN a.IATA as IATA, a.Name as Name, a.Country as Country,
+               a.Callsign as Callsign, a.Active as Active
+        LIMIT $limit
+        """
+        return self.execute_query(query, {"country": country, "limit": limit})
+
+    def get_airline_network(self, iata: str, limit: int = 50) -> List[Dict[str, Any]]:
+        """Get network visualization data for an airline (routes with coordinates)"""
+        query = """
+        MATCH (source:Airport)-[r:ROUTE {Airline: $iata}]->(dest:Airport)
+        WHERE source.Latitude IS NOT NULL AND source.Longitude IS NOT NULL
+           AND dest.Latitude IS NOT NULL AND dest.Longitude IS NOT NULL
+        RETURN source.IATA as source_iata, source.Name as source_name,
+               source.Latitude as source_lat, source.Longitude as source_lon,
+               dest.IATA as dest_iata, dest.Name as dest_name,
+               dest.Latitude as dest_lat, dest.Longitude as dest_lon,
+               r.Distance as distance
+        LIMIT $limit
+        """
+        return self.execute_query(query, {"iata": iata.upper(), "limit": limit})
+
+    def get_airline_route_stats(self, iata: str) -> Optional[Dict[str, Any]]:
+        """Get route statistics for an airline"""
+        query = """
+        MATCH (a:Airline {IATA: $iata})<-[:operates]-(source:Airport)-[r:ROUTE {Airline: $iata}]->(dest:Airport)
+        WITH a, count(r) as total_routes, 
+             avg(CASE WHEN r.Distance IS NOT NULL THEN r.Distance ELSE 0 END) as avg_distance,
+             min(CASE WHEN r.Distance IS NOT NULL THEN r.Distance ELSE 0 END) as min_distance,
+             max(CASE WHEN r.Distance IS NOT NULL THEN r.Distance ELSE 0 END) as max_distance,
+             count(DISTINCT source) as airports_from,
+             count(DISTINCT dest) as airports_to
+        RETURN a.IATA as IATA, a.Name as Name, a.Country as Country,
+               total_routes, avg_distance, min_distance, max_distance,
+               airports_from, airports_to
+        """
+        result = self.execute_query(query, {"iata": iata.upper()})
+        return result[0] if result else None
+
+    def get_airline_routes(self, iata: str, limit: int = 100) -> List[Dict[str, Any]]:
+        """Get all routes operated by an airline"""
+        query = """
+        MATCH (source:Airport)-[r:ROUTE {Airline: $iata}]->(dest:Airport)
+        RETURN source.IATA as source, source.Name as source_name,
+               source.City as source_city, source.Country as source_country,
+               dest.IATA as destination, dest.Name as dest_name,
+               dest.City as dest_city, dest.Country as dest_country,
+               r.Distance as distance, r.Stops as stops,
+               r.Equipment as equipment
+        ORDER BY r.Distance DESC
+        LIMIT $limit
+        """
+        return self.execute_query(query, {"iata": iata.upper(), "limit": limit})
+
+    def get_countries_by_airline_count(self, limit: int = 15) -> List[Dict[str, Any]]:
+        """Get countries with most airlines"""
+        query = """
+        MATCH (a:Airline)
+        WHERE a.Country IS NOT NULL
+        RETURN a.Country as country, count(a) as airline_count
+        ORDER BY airline_count DESC
+        LIMIT $limit
+        """
+        return self.execute_query(query, {"limit": limit})
+
+    def get_airlines_by_active_status(self) -> Dict[str, int]:
+        """Get count of active vs inactive airlines"""
+        query = """
+        MATCH (a:Airline)
+        RETURN a.Active as status, count(a) as count
+        """
+        result = self.execute_query(query)
+        counts = {}
+        for row in result:
+            status = "Active" if row["status"] == "Y" else "Inactive"
+            counts[status] = row["count"]
+        return counts
