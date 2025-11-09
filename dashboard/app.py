@@ -59,7 +59,13 @@ st.markdown(
 st.sidebar.title("🛫 Navigation")
 page = st.sidebar.radio(
     "Go to",
-    ["🏠 Home", "🔍 Airport Search", "🗺️ Route Explorer", "📊 Analytics"],
+    [
+        "🏠 Home",
+        "🔍 Airport Search",
+        "✈️ Airline Explorer",
+        "🗺️ Route Explorer",
+        "📊 Analytics",
+    ],
     index=0,  # Default to Home page
 )
 
@@ -75,6 +81,10 @@ elif page == "🔍 Airport Search":
     from pages import airport_search
 
     airport_search.show(db)
+elif page == "✈️ Airline Explorer":
+    from pages import airline_explorer
+
+    airline_explorer.show(db)
 elif page == "🗺️ Route Explorer":
     from pages import route_explorer
 

@@ -19,6 +19,15 @@ Interactive Streamlit dashboard to explore global aviation data from the Airfact
 - See routes from each airport
 - Interactive airport location maps
 
+#### ✈️ Airline Explorer
+
+- Search airlines by name, country, or IATA code
+- Browse airlines by country
+- View detailed airline information and statistics
+- Visualize airline route networks on global maps
+- Compare multiple airlines side-by-side
+- Analyze route distance distributions
+
 #### 🗺️ Route Explorer
 
 - Find routes between any two airports
@@ -145,6 +154,7 @@ dashboard/
 │   ├── __init__.py
 │   ├── home.py                # Home page
 │   ├── airport_search.py      # Airport search functionality
+│   ├── airline_explorer.py    # Airline exploration and analysis
 │   ├── route_explorer.py      # Route finding and visualization
 │   └── analytics.py           # Analytics dashboards
 └── README.md                  # This file
